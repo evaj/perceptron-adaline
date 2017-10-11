@@ -17,6 +17,10 @@ public class LearningTest {
         parameters = ParamReaderKt.getData("params");
         initWeights = new Vector(new double [] {Math.random()*parameters.get("weightRangeMin"),
                 Math.random()*parameters.get("weightRangeMax")});
+    }
 
+    protected void reloadData(Double [][] matrix){
+        data = new Matrix(DataGeneratorKt.generateDataArray(parameters.get("trainSize").intValue(),
+                parameters.get("precision"), matrix));
     }
 }

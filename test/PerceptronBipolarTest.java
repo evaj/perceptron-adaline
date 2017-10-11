@@ -6,15 +6,11 @@ import java.util.Map;
 /**
  * Created by Dell on 2017-10-09.
  */
-public class PerceptronBipolarTest extends LearningTest{
-
-    Matrix andWeights;
-    Matrix orWeights;
+public class PerceptronBipolarTest extends LogicFunctionTest{
 
     @Before
     public void learnAnd(){
-        Matrix data = new Matrix(DataGeneratorKt.generateDataArray(parameters.get("trainSize").intValue(),
-                parameters.get("precision"), LogicFunctionsKt.getAND_VALUES_BIPOLAR()));
+        reloadData(LogicFunctionsKt.getAND_VALUES_BIPOLAR());
         Perceptron perceptron = new BipolarPerceptron(initWeights, parameters.get("bias"));
         andWeights = Optimiser.learn(perceptron, data, parameters.get("learningRate"),
                 parameters.get("theta"), parameters.get("epochs").intValue());
@@ -22,8 +18,7 @@ public class PerceptronBipolarTest extends LearningTest{
 
     @Before
     public void learnOr(){
-        Matrix data = new Matrix(DataGeneratorKt.generateDataArray(parameters.get("trainSize").intValue(),
-                parameters.get("precision"), LogicFunctionsKt.getOR_VALUES_BIPOLAR()));
+        reloadData(LogicFunctionsKt.getOR_VALUES_BIPOLAR());
         Perceptron perceptron = new BipolarPerceptron(initWeights, parameters.get("bias"));
         orWeights = Optimiser.learn(perceptron, data, parameters.get("learningRate"),
                 parameters.get("theta"), parameters.get("epochs").intValue());
