@@ -6,31 +6,25 @@ import java.util.Map;
 /**
  * Created by Dell on 2017-10-09.
  */
-public class PerceptronUnipolarTest {
+public class PerceptronUnipolarTest extends LearningTest{
 
     Matrix andWeights;
     Matrix orWeights;
 
     @Before
     public void learnAnd(){
-        Map<String, Double> map = ParamReaderKt.getData("params");
-        Vector initWeights = new Vector(new double [] {Math.random()*map.get("weightRangeMin"),
-                Math.random()*map.get("weightRangeMax")});
-        Matrix data = new Matrix(DataGeneratorKt.generateDataArray(map.get("trainSize").intValue(),
-                map.get("precision"), LogicFunctionsKt.getAND_VALUES()));
-        Perceptron perceptron = new UnipolarPerceptron(initWeights, map.get("bias"));
-        andWeights = Optimiser.learn(perceptron, data, map.get("learningRate"), map.get("theta"), map.get("epochs").intValue());
+        Matrix data = new Matrix(DataGeneratorKt.generateDataArray(parameters.get("trainSize").intValue(),
+                parameters.get("precision"), LogicFunctionsKt.getAND_VALUES()));
+        Perceptron perceptron = new UnipolarPerceptron(initWeights, parameters.get("bias"));
+        andWeights = Optimiser.learn(perceptron, data, parameters.get("learningRate"), parameters.get("theta"), parameters.get("epochs").intValue());
     }
 
     @Before
     public void learnOr(){
-        Map<String, Double> map = ParamReaderKt.getData("params");
-        Vector initWeights = new Vector(new double [] {Math.random()*map.get("weightRangeMin"),
-                Math.random()*map.get("weightRangeMax")});
-        Matrix data = new Matrix(DataGeneratorKt.generateDataArray(map.get("trainSize").intValue(),
-                map.get("precision"), LogicFunctionsKt.getOR_VALUES()));
-        Perceptron perceptron = new UnipolarPerceptron(initWeights, map.get("bias"));
-        orWeights = Optimiser.learn(perceptron, data, map.get("learningRate"), map.get("theta"), map.get("epochs").intValue());
+        Matrix data = new Matrix(DataGeneratorKt.generateDataArray(parameters.get("trainSize").intValue(),
+                parameters.get("precision"), LogicFunctionsKt.getOR_VALUES()));
+        Perceptron perceptron = new UnipolarPerceptron(initWeights, parameters.get("bias"));
+        orWeights = Optimiser.learn(perceptron, data, parameters.get("learningRate"), parameters.get("theta"), parameters.get("epochs").intValue());
     }
 
     @Test
