@@ -1,0 +1,9 @@
+theta:0
+trainSize:100
+precision:0.1
+weightRangeMin:-0.8
+weightRangeMax:0.8
+bias:0.5
+desiredError:0.01
+learningRate:0.01
+epochs:50
